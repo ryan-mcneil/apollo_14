@@ -7,4 +7,9 @@ class Astronaut < ApplicationRecord
   def self.average_age
     average(:age)
   end
+
+  def missions_abc
+    
+    missions.map{|mission| mission.title}.join(", ")
+  end
 end
