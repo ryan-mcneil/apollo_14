@@ -6,11 +6,10 @@ describe 'astronaut index' do
   before(:each) do
     @astronaut_1 = Astronaut.create(name: 'Neil Armstong', age:"37", job:"Commander")
     @astronaut_2 = Astronaut.create(name: 'Buzz Aldrin', age:"88", job:"Command Pilot")
-    #song_1 = artist.songs.create!(title: "Don't Stop Believin'", length: 303, play_count: 54839)
 
   end
 
-  it 'user can see all astronauts' do
+  it 'should show all astronauts' do
     visit '/astronauts'
 
     expect(page).to have_content("All Astronauts")
@@ -20,5 +19,11 @@ describe 'astronaut index' do
     expect(page).to have_content(@astronaut_2.name)
     expect(page).to have_content("Age: #{@astronaut_2.age}")
     expect(page).to have_content("Job: #{@astronaut_2.job}")
+  end
+
+  it 'should show average age' do
+    visit '/astronauts'
+
+    expect(page).to have_content(Astronaut.average_age)
   end
 end
