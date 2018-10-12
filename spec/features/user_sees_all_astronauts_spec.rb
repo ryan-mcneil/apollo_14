@@ -4,7 +4,7 @@ require 'rails_helper'
 describe 'astronaut index' do
 
   before(:each) do
-    @astronaut_1 = Astronaut.create(name: 'Neil Armstong', age:"37", job:"Commander")
+    @astronaut_1 = Astronaut.create(name: 'Neil Armstong', age:"38", job:"Commander")
     @astronaut_2 = Astronaut.create(name: 'Buzz Aldrin', age:"88", job:"Command Pilot")
 
   end
@@ -23,7 +23,8 @@ describe 'astronaut index' do
 
   it 'should show average age' do
     visit '/astronauts'
-
-    expect(page).to have_content(Astronaut.average_age)
+      within ("#stats") do
+        expect(page).to have_content(Astronaut.average_age)
+      end
   end
 end
